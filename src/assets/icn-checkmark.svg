@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="9px" viewBox="0 0 12 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>2C1D82CD-0CAB-43B6-91A0-584DFB828EC1</title>
+    <defs>
+        <path d="M8.0757325,14.8232403 L4.17572869,10.9008128 C3.94142377,10.6651607 3.94142377,10.2830776 4.17572869,10.0474019 L5.02423733,9.19399103 C5.25854224,8.95831537 5.63846449,8.95831537 5.87276941,9.19399103 L8.5,11.8363023 L14.1272306,6.17673907 C14.3615355,5.94108698 14.7414578,5.94108698 14.9757627,6.17673907 L15.8242713,7.03014993 C16.0585762,7.26580202 16.0585762,7.64788512 15.8242713,7.88356079 L8.92426457,14.8232639 C8.68993622,15.058916 8.31003741,15.058916 8.0757325,14.8232403 L8.0757325,14.8232403 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/checkmark" transform="translate(-4.000000, -6.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="icn-checkmark" fill="#ffffff" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="18px" viewBox="0 0 15 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>94D9B47A-993B-47DC-9FC2-85EFAB0AABDE</title>
+    <defs>
+        <path d="M11.5,8.5 C14,8.5 16,10.5 16,13 C16,15.5 14.8997397,15.8997397 15,16 C17,16.6666667 18,17.3333333 18,18 C18,19 18,19 17,19 C16.3333333,19 15.5,18.1666667 14.5,16.5 C14.3997397,16.3997397 14,17.5 11.5,17.5 C9,17.5 7,15.4375265 7,12.9687633 C7,10.5 9,8.5 11.5,8.5 Z M11.5,10 C10,10 8.5,11.5 8.5,13 C8.5,14.5 10,16 11.5,16 C13,16 14.5,14.5 14.5,13 C14.5,11.5 13,10 11.5,10 Z M9,1 L9,5 L14,5 L14.0012601,7.59322953 C13.2838788,7.21679678 12.4468259,7 11.5,7 C8,7 6,9.5 6,13 C6,13.7347999 6.1085342,14.4034857 6.30813858,15.0014309 L4,15 C3.5,15 3,14.5 3,14 L3,1 L9,1 Z M11,1 C13,2.33333333 14,3 14,3 L14,4 L9.99998331,4 L9.99998331,1 L11,1 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/audit" transform="translate(-3.000000, -1.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="icn-audit" fill="#000000" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

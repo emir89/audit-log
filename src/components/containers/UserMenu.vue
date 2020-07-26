@@ -26,6 +26,8 @@
         height: 236px;
         position: absolute;
         margin: 285px 0 0 940px;
+        /* top: -90px;
+        right: 115px; */
         background-color: #FFFFFF;
         border: 1px solid #CFCFCF;
         border-radius: 4px;
@@ -65,7 +67,7 @@
 
     @media (min-width: 768px) and (max-width: 1024px) {
         .user-menu-container {
-            margin: 145px 0 0 200px;
+            margin: 285px 0 0 200px;
         }
     }
 
@@ -83,7 +85,7 @@
 
     @media (min-width: 975px) and (max-width: 1025px) {
         .user-menu-container {
-            margin: 145px 0 0 450px;
+            margin: 285px 0 0 450px;
         }
     }
 </style>

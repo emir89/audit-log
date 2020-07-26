@@ -5,7 +5,7 @@
             <div class="user-avatar" :class="{'user-avatar-menu-opened': isUserMenuOpened}">
                 <span class="avatar-name" :class="{'avatar-name-menu-opened': isUserMenuOpened}">JD</span>
             </div>
-            <img :src="menuArrowSrc" alt="Icon Down" />
+            <img class="user-menu-dropdown-icon" :src="menuArrowSrc" alt="Icon Down" />
         </div>
         <UserMenu v-show="isUserMenuOpened" />
     </div>
@@ -33,15 +33,16 @@
         methods: {
             toggleMenu() {
                 this.isUserMenuOpened = !this.isUserMenuOpened;
-            },
-            clearSearch() {
-                this.searchText = '';
             }
         }
     }
 </script>
 
 <style scoped>
+    svg {
+        fill: red;
+    }
+
     .header-container {
         background-color: #FFFFFF;
         height: 60px;

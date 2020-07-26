@@ -1,6 +1,6 @@
 <template>
     <div class="menu-list">
-        <img src="../../assets/icondashboard.svg" alt="Menu Icon - Audit" />
+        <img class="audit-log-dashboard-icon" src="../../assets/icondashboard.svg" alt="Menu Icon - Audit" />
         <span class="menu-list-item">Audit</span>
     </div>
 </template>
@@ -12,7 +12,6 @@
 </script>
 
 <style scoped>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
     .menu-list {
         margin: 47px 212px 0 23px;
         display: flex;
@@ -27,5 +26,10 @@
         line-height: 18px;
         width: 180px;
         text-align: left;
+    }
+
+    .audit-log-dashboard-icon {
+        width: 15px;
+        height: 18px;
     }
 </style>

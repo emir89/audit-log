@@ -3,7 +3,7 @@
         <div class="no-results">
             <img class="no-results-icon" src="../../assets/img-audit-noresults.png" alt="No Results" />
             <div class="no-results-text">
-                <p class="no-results-title">Nothing to show</p>
+                <p class="no-results-title">Nothing to Show</p>
                 <p class="no-results-instruction-text">
                     To see audit logs, choose the filters and/or perform a search from the above menu.
                 </p>
@@ -41,6 +41,7 @@
 
     .no-results-instruction-text {
         margin-top: -10px;
+        font-weight: 400;
     }
 
     .no-results-text {

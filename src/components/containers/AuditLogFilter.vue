@@ -127,8 +127,6 @@
         watch: {
             // close actions dropdown if opened when users unselected
             numberOfUsersSelectedRows(newVal, oldVal) {
-                console.log('ov', oldVal)
-                console.log('nv', newVal)
                 if (!!oldVal && !newVal && this.isActionDropDownOpened) {
                     this.isActionDropDownOpened = false;
                 }

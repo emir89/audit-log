@@ -1,14 +1,13 @@
 <template>
     <div class="user-menu-container">
         <p class="role">ADMINISTRATOR</p>
-        <p><strong>mike.andrew@jatheon.com</strong></p>
+        <p><strong>john.doe@jatheon.com</strong></p>
         <p>Jatheon Technologies</p>
         <hr class="divider" />
         <div class="user-menu-links">
             <p>Account Settings</p>
             <p>Company Settings</p>
             <p>Help Center</p>
-            <p>Keyboard Shortcuts</p>
             <p>Log Out</p>
         </div>
     </div>
@@ -23,17 +22,15 @@
 <style>
     .user-menu-container {
         width: 230px;
-        height: 236px;
+        height: 210px;
         position: absolute;
-        margin: 285px 0 0 940px;
-        /* top: -90px;
-        right: 115px; */
+        margin: 263px 0 0 935px;
         background-color: #FFFFFF;
         border: 1px solid #CFCFCF;
         border-radius: 4px;
         box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.3);
         font-size: 14px;
-        line-height: 10px;
+        line-height: 12px;
     }
 
     .user-menu-container, .user-menu-links {
@@ -67,25 +64,34 @@
 
     @media (min-width: 768px) and (max-width: 1024px) {
         .user-menu-container {
-            margin: 285px 0 0 200px;
+            margin: 263px 0 0 195px;
         }
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    @media (min-width: 975px) and (max-width: 1025px),
+    (min-width: 1025px) and (max-width: 1510px) {
         .user-menu-container {
-            margin: 145px 0 0 450px;
+            margin: 263px 0 0 445px;
         }
     }
 
-    @media (min-width: 1025px) and (max-width: 1410px) {
+    @media only screen
+    and (min-device-width : 768px)
+    and (max-device-width : 1024px)
+    and (orientation : portrait)
+    and (-webkit-min-device-pixel-ratio: 2) {
         .user-menu-container {
-            margin: 285px 0 0 450px;
+            margin: 123px 0 0 195px;
         }
     }
 
-    @media (min-width: 975px) and (max-width: 1025px) {
+    @media only screen
+    and (min-device-width : 768px)
+    and (max-device-width : 1024px)
+    and (orientation : landscape)
+    and (-webkit-min-device-pixel-ratio: 1) {
         .user-menu-container {
-            margin: 285px 0 0 450px;
+            margin: 123px 0 0 445px;
         }
     }
 </style>

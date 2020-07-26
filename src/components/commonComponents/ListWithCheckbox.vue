@@ -1,13 +1,15 @@
 <template>
     <div>
         <div v-if="isSearchable" class="list-search">
-            <img class="list-search-icon" src="../../assets/iconsearch.svg" alt="Search Icon" />
-            <img
-                    v-if="search.length"
-                    @click="clearSearch"
-                    class="list-search-close-icon"
-                    src="../../assets/icn-close.svg" alt="Close Icon"
-            />
+            <img class="list-search-icon" src="@/assets/iconsearch.svg" alt="Search Icon" />
+            <span
+                v-if="search.length"
+                @click="clearSearch"
+                class="list-search-close-icon">
+                <IconBase>
+                    <IconClose />
+                </IconBase>
+            </span>
             <input
                 class="list-search-input"
                 v-model="search"
@@ -219,9 +221,13 @@
 
 .list-search-close-icon {
     position: absolute;
-    top: 26px;
-    left: 230px;
+    top: 22px;
+    left: 224px;
     cursor: pointer;
+}
+
+.list-search-close-icon:hover svg {
+    fill: #00A88D;
 }
 
 .list-search {
@@ -276,7 +282,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape),
 (min-width: 975px) and (max-width: 1025px),
-(min-width: 1025px) and (max-width: 1410px) {
+(min-width: 1025px) and (max-width: 1510px) {
     .list-search {
         width: 297px;
     }
@@ -288,21 +294,6 @@
 
     .list-search-close-icon {
         left: 292px;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1410px) {
-    .list-search {
-        width: 630px;
-    }
-
-    .list-search-input {
-        width: 550px;
-        margin: 8px 0 0 -10px;
-    }
-
-    .list-search-close-icon {
-        left: 620px;
     }
 }
 </style>

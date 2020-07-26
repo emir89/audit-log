@@ -5,7 +5,11 @@
             <div class="user-avatar" :class="{'user-avatar-menu-opened': isUserMenuOpened}">
                 <span class="avatar-name" :class="{'avatar-name-menu-opened': isUserMenuOpened}">JD</span>
             </div>
-            <img class="user-menu-dropdown-icon" :src="menuArrowSrc" alt="Icon Down" />
+            <span :class="{'user-menu-dropdown-opened': isUserMenuOpened}" class="user-menu-dropdown-arrow-icon">
+                <IconBase>
+                    <Component v-bind:is="dropdownArrowComponent('isUserMenuOpened')" />
+                </IconBase>
+            </span>
         </div>
         <UserMenu v-show="isUserMenuOpened" />
     </div>
@@ -14,22 +18,15 @@
 <script>
     import UserMenu from "./UserMenu";
     import HeaderSearch from "./HeaderSearch";
+    import {dropdown} from "../../../../mixins/dropdown";
 
     export default {
         name: "Header",
         components: {UserMenu, HeaderSearch},
+        mixins: [dropdown],
         data: () => ({
             isUserMenuOpened: false,
         }),
-        computed: {
-          menuArrowSrc() {
-              const arrow = this.isUserMenuOpened ? "icn-arrow-up" : "icn-arrow-down";
-
-              return require(`../../assets/${arrow}.svg`);
-          }
-        },
-        mounted() {},
-        updated() {},
         methods: {
             toggleMenu() {
                 this.isUserMenuOpened = !this.isUserMenuOpened;
@@ -39,10 +36,6 @@
 </script>
 
 <style scoped>
-    svg {
-        fill: red;
-    }
-
     .header-container {
         background-color: #FFFFFF;
         height: 60px;
@@ -53,9 +46,9 @@
     }
 
     .user-menu{
-        margin-right: 20px;
+        margin-right: 18px;
         display: inline-flex;
-        justify-content: center
+        justify-content: center;
     }
 
     .user-menu:hover {
@@ -67,9 +60,8 @@
         border-radius: 100%;
         width: 32px;
         height: 32px;
-        margin-right: 10px;
+        margin-right: 6px;
         display: flex;
-        align-content: center;
         align-items: center;
     }
 
@@ -79,6 +71,14 @@
 
     .avatar-name-menu-opened {
         color: #0EAD94 !important;
+    }
+
+    .user-menu-dropdown-arrow-icon {
+        margin-top: 7px;
+    }
+
+    .user-menu-dropdown-arrow-icon:hover svg {
+        fill: #00A88D;
     }
 
     .avatar-name {

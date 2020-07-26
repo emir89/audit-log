@@ -11,8 +11,8 @@
 </template>
 
 <script>
-    import {users} from '../../dummyData';
-    import ListWithCheckbox from "../commonComponents/ListWithCheckbox";
+    import {users} from '../../../../dummyData';
+    import ListWithCheckbox from "../../../commonComponents/ListWithCheckbox";
 
     export default {
         name: "UsersDropdownList",

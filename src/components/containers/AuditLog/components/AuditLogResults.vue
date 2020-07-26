@@ -1,7 +1,7 @@
 <template>
     <div class="results-container">
         <div class="no-results">
-            <img class="no-results-icon" src="../../assets/img-audit-noresults.png" alt="No Results" />
+            <img class="no-results-icon" src="@/assets/img-audit-noresults.png" alt="No Results" />
             <div class="no-results-text">
                 <p class="no-results-title">Nothing to Show</p>
                 <p class="no-results-instruction-text">

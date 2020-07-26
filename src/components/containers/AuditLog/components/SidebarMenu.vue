@@ -1,6 +1,6 @@
 <template>
     <div class="menu-list">
-        <img class="audit-log-dashboard-icon" src="../../assets/icondashboard.svg" alt="Menu Icon - Audit" />
+        <img class="audit-log-dashboard-icon" src="@/assets/icondashboard.svg" alt="Menu Icon - Audit" />
         <span class="menu-list-item">Audit</span>
     </div>
 </template>

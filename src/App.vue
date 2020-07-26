@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Home from './components/containers/Home'
+import Home from './components/containers/AuditLog/AuditLogPage'
 
 export default {
   name: 'App',

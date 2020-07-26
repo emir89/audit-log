@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar">
-        <img class="logo" src="../../assets/logo.png" alt="Logo" />
+        <img class="logo" src="@/assets/logo.png" alt="Logo" />
         <SidebarMenu />
     </div>
 </template>

@@ -10,10 +10,10 @@
 </template>
 
 <script>
-    import Sidebar from "./Sidebar";
-    import Header from "./Header";
-    import AuditLogFilter from "./AuditLogFilter";
-    import AuditLogResults from "./AuditLogResults";
+    import Sidebar from "./components/Sidebar";
+    import Header from "./components/Header";
+    import AuditLogFilter from "./components/AuditLogFilter";
+    import AuditLogResults from "./components/AuditLogResults";
 
     export default {
         name: "Home",
@@ -27,6 +27,8 @@
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
     .container {
         width: 1440px;
         height: 1024px;
@@ -55,7 +57,7 @@
 
     @media (min-width: 975px) and (max-width: 1024px),
     (min-width: 975px) and (max-width: 1024px) and (orientation: landscape),
-    (min-width: 1025px) and (max-width: 1410px) {
+    (min-width: 1025px) and (max-width: 1510px) {
         .container {
             width: 950px;
         }

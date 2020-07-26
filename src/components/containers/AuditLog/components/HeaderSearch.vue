@@ -1,6 +1,6 @@
 <template>
     <div class="header-search-container">
-        <img class="header-search-icon" src="../../assets/iconsearch.svg" alt="Search Icon" />
+        <img class="header-search-icon" src="@/assets/iconsearch.svg" alt="Search Icon" />
         <input
             class="header-search-input"
             type="text"
@@ -56,7 +56,7 @@
     }
 
     @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape),
-    (min-width: 1025px) and (max-width: 1410px) {
+    (min-width: 1025px) and (max-width: 1510px) {
         .header-search-container {
             width: 323px;
         }

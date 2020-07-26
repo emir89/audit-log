@@ -8,8 +8,12 @@
                 type="text"
                 readonly
             />
-            <img class="user-dropdown-arrow-icon" :src="userDropDownArrowSrc"  alt="Arrow Icon" />
-            <div v-show="isUserDropDownOpened" class="user-select-dropdown" @click.stop>
+            <span class="users-dropdown-arrow-icon">
+                <IconBase>
+                    <Component v-bind:is="dropdownArrowComponent('isUsersDropdownOpened')" />
+                </IconBase>
+            </span>
+            <div v-show="isUsersDropdownOpened" class="users-select-dropdown" @click.stop>
                 <UsersDropdownList
                     @allCheckboxSelected="handleAllCheckboxSelected"
                     @rowCheckboxSelected="handleRowCheckboxSelected"
@@ -35,13 +39,12 @@
                 type="text"
                 readonly
             />
-            <img
-                v-if="selectedUsers.length"
-                :src="actionDropDownArrowSrc"
-                class="action-dropdown-arrow-icon"
-                alt="Arrow Icon"
-            />
-            <div v-show="isActionDropDownOpened" class="action-select-dropdown" @click.stop>
+            <span v-if="selectedUsers.length" class="actions-dropdown-arrow-icon">
+                <IconBase>
+                    <Component v-bind:is="dropdownArrowComponent('isActionsDropdownOpened')" />
+                </IconBase>
+            </span>
+            <div v-show="isActionsDropdownOpened" class="actions-select-dropdown" @click.stop>
                 <ActionsDropdownList
                     @allCheckboxSelected="handleAllCheckboxSelected"
                     @rowCheckboxSelected="handleRowCheckboxSelected"
@@ -55,20 +58,22 @@
                 placeholder="Filter results..."
                 type="text"
             />
-            <img
-                    v-if="resultsFilerSearch.length"
-                    @click="clearResultsFilter"
-                    class="user-dropdown-close-icon"
-                    src="../../assets/icn-close.svg" alt="Close Icon"
-            />
+            <span
+                @click="clearResultsFilter"
+                v-if="resultsFilerSearch.length"
+                class="filter-results-close-icon">
+                <IconBase>
+                    <IconClose />
+                </IconBase>
+            </span>
         </div>
         <button
             :class="{
             'disabled-search-button': !selectedUsers.length,
-            'search-enabled': selectedUsers.length
+            'enabled-search-button': selectedUsers.length
         }"
             :disabled="!selectedUsers.length"
-            class="search">
+            class="search-button">
             Search Now
         </button>
     </div>
@@ -77,15 +82,17 @@
 <script>
     import UsersDropdownList from "./UsersDropdownList";
     import ActionsDropdownList from "./ActionsDropdownList";
+    import {dropdown} from "../../../../mixins/dropdown";
 
     export default {
         name: "AuditLogFilter",
+        mixins: [dropdown],
         data: () => ({
             selectedUsers: [],
             selectedActions: [],
             resultsFilterText: null,
-            isUserDropDownOpened: false,
-            isActionDropDownOpened: false,
+            isUsersDropdownOpened: false,
+            isActionsDropdownOpened: false,
             isAllUsersSelected: false,
             isAllActionsSelected: false,
             resultsFilerSearch: '',
@@ -95,12 +102,6 @@
             ActionsDropdownList,
         },
         computed: {
-            userDropDownArrowSrc() {
-                return this.getDropDownArrowSrc(this.isUserDropDownOpened);
-            },
-            actionDropDownArrowSrc() {
-                return this.getDropDownArrowSrc(this.isActionDropDownOpened);
-            },
             numberOfUsersSelectedRows() {
                 if (this.selectedUsers.length) {
                     return this.getNumberOfSelectedRows(
@@ -122,13 +123,13 @@
                 }
 
                 return null;
-            }
+            },
         },
         watch: {
             // close actions dropdown if opened when users unselected
             numberOfUsersSelectedRows(newVal, oldVal) {
-                if (!!oldVal && !newVal && this.isActionDropDownOpened) {
-                    this.isActionDropDownOpened = false;
+                if (!!oldVal && !newVal && this.isActionsDropdownOpened) {
+                    this.isActionsDropdownOpened = false;
                 }
             }
         },
@@ -137,7 +138,7 @@
              * Opens/Closes users filter list
              */
             toggleUserDropDown() {
-                this.isUserDropDownOpened = !this.isUserDropDownOpened;
+                this.isUsersDropdownOpened = !this.isUsersDropdownOpened;
             },
             /**
              * Opens/Closes actions filter list
@@ -146,7 +147,7 @@
              */
             toggleActionDropDown() {
                 if (!this.selectedUsers.length) return;
-                this.isActionDropDownOpened = !this.isActionDropDownOpened;
+                this.isActionsDropdownOpened = !this.isActionsDropdownOpened;
             },
             /**
              * Gets dropdown icon source path
@@ -154,7 +155,7 @@
             getDropDownArrowSrc(isMenuOpened) {
                 const arrow = isMenuOpened ? "icn-arrow-up" : "icn-arrow-down";
 
-                return require(`../../assets/${arrow}.svg`);
+                return require(`@/assets/${arrow}.svg`);
             },
             /**
              * Handles Select All checkboxes event
@@ -271,8 +272,9 @@
         align-items: center;
     }
 
-    .search {
+    .search-button {
         margin-left: 15px;
+        outline: none;
     }
 
     .select-container, .results-filter-container {
@@ -283,9 +285,10 @@
         height: 38px;
         display: flex;
         flex-direction: row;
+        align-content: center;
     }
 
-    .search {
+    .search-button {
         background-color: #00A88D;
         border: 1px solid #00A88D;
         border-radius: 4px;
@@ -295,14 +298,7 @@
         font-size: 14px;
     }
 
-    .search-enabled:hover {
-        background-color: #00A88D;
-        border: 1px solid #00A88D;
-        color: #FFFFFF;
-        cursor: pointer;
-    }
-
-    .search-enabled:hover {
+    .enabled-search-button:hover {
         background-color: #67C8C7;
         cursor: pointer;
     }
@@ -337,15 +333,13 @@
         cursor: pointer;
     }
 
-    .user-dropdown-arrow-icon {
-        left: 603px;
+    .users-dropdown-arrow-icon,
+    .actions-dropdown-arrow-icon,
+    .filter-results-close-icon {
+        margin-top: 8px;
     }
 
-    .action-dropdown-arrow-icon {
-        left: 885px;
-    }
-
-    .user-select-dropdown, .action-select-dropdown {
+    .users-select-dropdown, .actions-select-dropdown {
         position: absolute;
         margin-top: 50px;
         background-color: #FFFFFF;
@@ -357,8 +351,20 @@
         padding: 0;
     }
 
-    .action-select-dropdown {
+    .actions-select-dropdown {
         width: 285px;
+    }
+
+    .users-dropdown-arrow-icon:hover svg,
+    .actions-dropdown-arrow-icon:hover svg,
+    .filter-results-close-icon:hover svg {
+        fill: #00A88D;
+    }
+
+    .users-dropdown-arrow-opened svg,
+    .actions-dropdown-arrow-opened svg {
+        transform: rotate(180deg);
+        margin-top: 2px;
     }
 
     .disabled-actions-container, .disabled-actions-input {
@@ -389,9 +395,8 @@
     }
 
     @media (min-width: 768px) and (max-width: 975px),
-    (min-width: 768px) and (max-width: 1024px) and (orientation: landscape),
     (min-width: 975px) and (max-width: 1025px),
-    (min-width: 1025px) and (max-width: 1410px) {
+    (min-width: 1025px) and (max-width: 1510px) {
         .filter-container {
             flex-wrap: wrap;
         }
@@ -401,23 +406,23 @@
             margin: 20px 0 10px 20px;
         }
 
-        .search {
+        .search-button {
             margin: 10px 0 20px 20px;
         }
 
-        .user-select-dropdown, .action-select-dropdown {
+        .users-select-dropdown, .actions-select-dropdown {
             width: 410px;
         }
 
-        .user-dropdown-arrow-icon,
-        .action-dropdown-arrow-icon,
-        .user-dropdown-close-icon {
-            margin-left: 12px;
+        .users-dropdown-arrow-icon,
+        .actions-dropdown-arrow-icon,
+        .filter-results-close-icon {
+            margin-left: 20px;
         }
     }
 
-    @media (min-width: 975px) and (max-width: 1024px),
-    (min-width: 975px) and (max-width: 1025px) and (orientation: landscape) {
+    @media (min-width: 975px) and (max-width: 1025px),
+    (min-width: 1025px) and (max-width: 1510px) {
         .filter-container {
             flex-wrap: wrap;
         }
@@ -443,39 +448,28 @@
             margin-left: 15px;
         }
 
-        .user-dropdown-arrow-icon,
-        .action-dropdown-arrow-icon,
-        .user-dropdown-close-icon {
+        .users-dropdown-arrow-icon,
+        .actions-dropdown-arrow-icon,
+        .filter-results-close-icon {
             margin-right: 10px;
         }
 
-        .user-select-dropdown, .action-select-dropdown {
+        .users-select-dropdown, .actions-select-dropdown {
             width: 320px;
         }
 
-        .user-dropdown-close-icon {
-            margin-left: 70px;
+        .filter-results-close-icon {
+            margin: 9px 0 0 63px;
         }
     }
 
-    @media (min-width: 1025px) and (max-width: 1410px) {
-        .user-select-dropdown, .action-select-dropdown {
-            width: 655px;
-        }
-
-        .filter-container {
-            flex-wrap: wrap;
-        }
-
-        .select-container, .results-filter-container {
-            flex: 0 0 94%;
-            margin: 20px 0 10px 20px;
-        }
-
-        .user-dropdown-arrow-icon,
-        .action-dropdown-arrow-icon,
-        .user-dropdown-close-icon {
-            margin-left: 55px;
+    @media only screen
+    and (min-device-width : 768px)
+    and (max-device-width : 1024px)
+    and (orientation : landscape)
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .filter-results-close-icon {
+            margin-left: 53px;
         }
     }
 </style>

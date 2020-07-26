@@ -9,8 +9,8 @@
 </template>
 
 <script>
-    import {actions} from "../../dummyData";
-    import DropdownListWithCheckbox from "../commonComponents/ListWithCheckbox";
+    import {actions} from "../../../../dummyData";
+    import DropdownListWithCheckbox from "../../../commonComponents/ListWithCheckbox";
 
     export default {
         name: "ActionsDropdownList",

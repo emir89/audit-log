@@ -449,8 +449,7 @@
         }
 
         .users-dropdown-arrow-icon,
-        .actions-dropdown-arrow-icon,
-        .filter-results-close-icon {
+        .actions-dropdown-arrow-icon {
             margin-right: 10px;
         }
 
@@ -466,8 +465,21 @@
     @media only screen
     and (min-device-width : 768px)
     and (max-device-width : 1024px)
-    and (orientation : landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (orientation : portrait) {
+        .users-dropdown-arrow-icon,
+        .actions-dropdown-arrow-icon {
+            margin-right: 10px;
+        }
+
+        .filter-results-close-icon {
+            margin-right: 10px;
+        }
+    }
+
+    @media only screen
+    and (min-device-width : 768px)
+    and (max-device-width : 1024px)
+    and (orientation : landscape) {
         .filter-results-close-icon {
             margin-left: 53px;
         }

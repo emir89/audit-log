@@ -78,20 +78,18 @@
     @media only screen
     and (min-device-width : 768px)
     and (max-device-width : 1024px)
-    and (orientation : portrait)
-    and (-webkit-min-device-pixel-ratio: 2) {
+    and (orientation : portrait) {
         .user-menu-container {
-            margin: 123px 0 0 195px;
+            margin: 132px 0 0 195px;
         }
     }
 
     @media only screen
     and (min-device-width : 768px)
     and (max-device-width : 1024px)
-    and (orientation : landscape)
-    and (-webkit-min-device-pixel-ratio: 1) {
+    and (orientation : landscape) {
         .user-menu-container {
-            margin: 123px 0 0 445px;
+            margin: 132px 0 0 445px;
         }
     }
 </style>

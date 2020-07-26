@@ -22,13 +22,13 @@
             No Results Found
         </p>
         <div v-else class="list" :style="{maxHeight: dropdownMaxHeight, paddingBottom: dropdownPadding}">
-            <div v-if="!search.length" class="list-row">
-                <div @click="onSelectCheckAll" :class="{'checkbox' : !selectedAll, 'checkbox-checked': selectedAll}" />
-                <span>Select All</span>
+            <div v-if="!search.length" @click="onSelectCheckAll"  class="list-row">
+                <div :class="{'checkbox' : !selectedAll, 'checkbox-checked': selectedAll}" />
+                <span class="row-value">Select All</span>
             </div>
-            <div class="list-row" v-for="row in (searchData || dataForList)" :key="row.value">
-                <div @click="onCheckRow(row)" :class="{'checkbox' : !row.checked, 'checkbox-checked': row.checked}" />
-                <span>{{row.value}}</span>
+            <div @click="onCheckRow(row)" class="list-row" v-for="row in (searchData || dataForList)" :key="row.value">
+                <div :class="{'checkbox' : !row.checked, 'checkbox-checked': row.checked}" />
+                <span class="row-value">{{row.value}}</span>
             </div>
         </div>
     </div>
@@ -186,13 +186,17 @@
     padding: 5px;
 }
 
-.list-row span{
+.row-value {
     margin-left: 10px;
 }
 
-.list-row:hover {
+.list-row:hover .row-value, .list-row:hover .checkbox {
     color: #00A88D;
     cursor: pointer;
+}
+
+.list-row:hover .checkbox {
+    border: 1px solid #00A88D;
 }
 
 .checkbox, .checkbox-checked {
@@ -207,10 +211,6 @@
     background-image: url('../../assets/icn-checkmark.svg');
     background-position: center;
     background-repeat: no-repeat;
-}
-
-.checkbox:hover {
-    border: 1px solid #00A88D;
 }
 
 .list-search-icon {

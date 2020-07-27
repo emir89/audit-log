@@ -3,7 +3,7 @@
         <HeaderSearch />
         <div class="user-menu" @click="toggleMenu">
             <div class="user-avatar" :class="{'user-avatar-menu-opened': isUserMenuOpened}">
-                <span class="avatar-name" :class="{'avatar-name-menu-opened': isUserMenuOpened}">JD</span>
+                <span class="user-name" :class="{'user-name-menu-opened': isUserMenuOpened}">JD</span>
             </div>
             <span :class="{'user-menu-dropdown-opened': isUserMenuOpened}" class="user-menu-dropdown-arrow-icon">
                 <IconBase>
@@ -65,11 +65,11 @@
         align-items: center;
     }
 
-    .user-avatar-menu-opened {
+    .user-avatar-menu-opened, .user-avatar:hover {
         background-color: #CBEDE8;
     }
 
-    .avatar-name-menu-opened {
+    .user-name-menu-opened, .user-avatar:hover .user-name {
         color: #0EAD94 !important;
     }
 
@@ -81,7 +81,7 @@
         fill: #00A88D;
     }
 
-    .avatar-name {
+    .user-name {
         text-align: center;
         color: #9B9B9B;
         font-size: 12px;

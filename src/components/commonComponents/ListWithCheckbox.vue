@@ -18,7 +18,7 @@
                 type="text"
             />
         </div>
-        <p v-if="search.length && !searchData.length" class="list-search-no-results-text">
+        <p v-if="search.length && (searchData && !searchData.length)" class="list-search-no-results-text">
             No Results Found
         </p>
         <div v-else class="list" :style="{maxHeight: dropdownMaxHeight, paddingBottom: dropdownPadding}">
@@ -67,9 +67,20 @@
             // listen for changes in search text
             search(newVal, oldVal) {
                 if (oldVal.length && !newVal.length) {
-                    const searchedData = this.searchData.length ? this.searchData : null;
+                    const searchedData = this.searchData && this.searchData.length ? this.searchData : null;
                     this.setListData(searchedData);
                     this.searchData = null;
+                }
+            },
+            searchData(newVal, oldVal) {
+                if (oldVal && oldVal.length && !newVal) {
+                    this.dataForList = this.dataForList
+                        .map(row => {
+                            const existingInSearchData = oldVal.find(searchRow =>
+                                searchRow.value.includes(row.value));
+                            if (existingInSearchData) return existingInSearchData
+                            return row;
+                        });
                 }
             },
             dataForList(newVal, oldVal) {
@@ -155,19 +166,41 @@
              * Searches list
              */
             searchUsers() {
-                const data = this.searchData || this.dataForList;
                 if (!this.search.length) {
                     this.setListData();
                     this.searchData = null;
                     return;
                 }
-                this.searchData = data.filter(row => row.value.includes(this.search.toLowerCase()));
+                if (this.searchData && this.searchData.length) {
+                    this.searchData = this.dataForList
+                        .filter(row => row.value.includes(this.search.toLowerCase()))
+                        .map(row => {
+                            const existingInSearchData = this.searchData.find(searchRow =>
+                                searchRow.value.includes(row.value));
+                            if (existingInSearchData) return existingInSearchData
+                            return row;
+                        });
+                } else {
+                    this.searchData = this.dataForList
+                        .filter(row => row.value.includes(this.search.toLowerCase()));
+                }
+
             },
             /**
              * Clears search text
              */
             clearSearch() {
                 this.search = '';
+                if (this.searchData && this.searchData.length) {
+                    this.dataForList = this.dataForList
+                        .map(row => {
+                            const existingInSearchData = this.searchData.find(searchRow =>
+                                searchRow.value.includes(row.value));
+                            if (existingInSearchData) return existingInSearchData
+                            return row;
+                        });
+                }
+                this.searchData = null;
             }
         },
     }
@@ -272,7 +305,7 @@
 
     .list-search-input {
         width: 310px;
-        margin: 8px 0 0 -10px;
+        margin: 10px 0 0 -10px;
     }
 
     .list-search-close-icon {
@@ -289,11 +322,11 @@
 
     .list-search-input {
         width: 217px;
-        margin: 8px 0 0 -10px;
+        margin: 10px 0 0 -10px;
     }
 
     .list-search-close-icon {
-        left: 292px;
+        left: 286px;
     }
 }
 </style>

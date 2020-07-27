@@ -14,23 +14,28 @@
         props: {
             iconName: {
                 type: String,
-                default: 'box'
+                default: 'box',
+                isRequired: false,
             },
             width: {
                 type: [Number, String],
-                default: 18
+                default: 18,
+                isRequired: false,
             },
             height: {
                 type: [Number, String],
-                default: 18
+                default: 18,
+                isRequired: false,
             },
             iconColor: {
                 type: String,
-                default: '#9B9B9B'
+                default: '#9B9B9B',
+                isRequired: false,
             },
             shouldTransform: {
                 type: Boolean,
-                default: false
+                default: false,
+                isRequired: false,
             }
         },
     }

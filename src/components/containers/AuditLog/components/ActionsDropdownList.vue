@@ -9,7 +9,6 @@
 </template>
 
 <script>
-    import {actions} from "../../../../dummyData";
     import DropdownListWithCheckbox from "../../../commonComponents/ListWithCheckbox";
 
     export default {
@@ -17,10 +16,12 @@
         components: {
             DropdownListWithCheckbox
         },
-        computed: {
-            actionsData() {
-                return actions;
-            }
+        props: {
+            actionsData: {
+                type: Array,
+                default: null,
+                isRequired: true,
+            },
         },
         methods: {
             emitAllActionsCheckboxSelected({listType, data, isAllRowsSelected, isToggledWithRow}) {

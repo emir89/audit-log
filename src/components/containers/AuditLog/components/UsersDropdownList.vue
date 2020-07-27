@@ -11,7 +11,6 @@
 </template>
 
 <script>
-    import {users} from '../../../../dummyData';
     import ListWithCheckbox from "../../../commonComponents/ListWithCheckbox";
 
     export default {
@@ -19,21 +18,16 @@
         components: {
             ListWithCheckbox
         },
+        props: {
+            usersData: {
+                type: Array,
+                default: null,
+                isRequired: true,
+            },
+        },
         data: () => ({
             search: null,
-            data: users,
         }),
-        computed: {
-            usersData() {
-                return users.sort(function(a, b){
-                    const userA = a;
-                    const userB = b;
-                    if(userA < userB) { return -1; }
-                    if(userA > userB) { return 1; }
-                    return 0;
-                });
-            }
-        },
         methods: {
             emitAllUsersCheckboxSelected({listType, data, isAllRowsSelected, isToggledWithRow}) {
                 if (listType === "users")

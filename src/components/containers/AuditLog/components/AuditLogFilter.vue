@@ -3,7 +3,7 @@
         <div @click="toggleUserDropDown" class="select-container users-container">
             <input
                 class="select-input users-input"
-                placeholder="No users selected"
+                placeholder="No user selected"
                 :value="numberOfUsersSelectedRows"
                 type="text"
                 readonly
@@ -15,6 +15,7 @@
             </span>
             <div v-show="isUsersDropdownOpened" class="users-select-dropdown" @click.stop>
                 <UsersDropdownList
+                    :usersData="usersData"
                     @allCheckboxSelected="handleAllCheckboxSelected"
                     @rowCheckboxSelected="handleRowCheckboxSelected"
                 />
@@ -46,6 +47,7 @@
             </span>
             <div v-show="isActionsDropdownOpened" class="actions-select-dropdown" @click.stop>
                 <ActionsDropdownList
+                    :actionsData="actionsData"
                     @allCheckboxSelected="handleAllCheckboxSelected"
                     @rowCheckboxSelected="handleRowCheckboxSelected"
                 />
@@ -87,6 +89,18 @@
     export default {
         name: "AuditLogFilter",
         mixins: [dropdown],
+        props: {
+            usersData: {
+                type: Array,
+                default: null,
+                isRequired: true,
+            },
+            actionsData: {
+                type: Array,
+                default: null,
+                isRequired: true,
+            },
+        },
         data: () => ({
             selectedUsers: [],
             selectedActions: [],
@@ -150,14 +164,6 @@
                 this.isActionsDropdownOpened = !this.isActionsDropdownOpened;
             },
             /**
-             * Gets dropdown icon source path
-             */
-            getDropDownArrowSrc(isMenuOpened) {
-                const arrow = isMenuOpened ? "icn-arrow-up" : "icn-arrow-down";
-
-                return require(`@/assets/${arrow}.svg`);
-            },
-            /**
              * Handles Select All checkboxes event
              *
              * @param listType
@@ -215,7 +221,7 @@
             handleSelectedRows(selectedData, isAllSelectedType, isAllSelectedValue, row) {
                 if (this[selectedData].some(selectedRow => selectedRow.value === row.value && row.checked)  ||
                     this[selectedData].includes(row.value)) {
-                    this.removeSelectedRow(this[selectedData], row)
+                    this.removeSelectedRow(this[selectedData], selectedData, row)
                 } else {
                     this[selectedData].push(row);
                 }
@@ -245,12 +251,12 @@
              * Removes selected row
              *
              * @param data
-             * @param row
+             * @param listType
+             * @param removedRow
              * @returns {any[]}
              */
-            removeSelectedRow(data, row) {
-                const index = data.indexOf(row.value);
-                return data.splice(index, 1);
+            removeSelectedRow(data, listType, removedRow) {
+                this[listType] = data.filter(row => row.value !== removedRow.value);
             },
             /**
              * Clears search sting
@@ -296,6 +302,7 @@
         height: 40px;
         color: #fff;
         font-size: 14px;
+        font-weight: 700;
     }
 
     .enabled-search-button:hover {

@@ -3,7 +3,10 @@
         <Sidebar />
         <section class="main-section">
             <Header />
-            <AuditLogFilter />
+            <AuditLogFilter
+                :usersData="usersData"
+                :actionsData="actionsData"
+            />
             <AuditLogResults />
         </section>
     </div>
@@ -14,6 +17,8 @@
     import Header from "./components/Header";
     import AuditLogFilter from "./components/AuditLogFilter";
     import AuditLogResults from "./components/AuditLogResults";
+    import {users} from '@/dummyData';
+    import {actions} from "@/dummyData";
 
     export default {
         name: "Home",
@@ -22,7 +27,21 @@
             Header,
             AuditLogFilter,
             AuditLogResults,
-        }
+        },
+        computed: {
+            usersData() {
+                return users.sort(function(a, b){
+                    const userA = a;
+                    const userB = b;
+                    if(userA < userB) { return -1; }
+                    if(userA > userB) { return 1; }
+                    return 0;
+                });
+            },
+            actionsData() {
+                return actions;
+            }
+        },
     }
 </script>
 
